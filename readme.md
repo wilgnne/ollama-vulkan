@@ -79,9 +79,13 @@ docker-compose down
 
 ## Contributing
 
+Special thanks to the following contributors:
+
+- [whyvl](https://github.com/whyvl) for the contribution to the Ollama Vulkan backend.
+- [Dts0](https://github.com/Dts0) for the build patches.
+
 Contributions are welcome! Feel free to submit pull requests or open issues to enhance the functionality or fix any bugs.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
