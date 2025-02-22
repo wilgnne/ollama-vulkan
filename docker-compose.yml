@@ -1,0 +1,46 @@
+services:
+  ollama-vk:
+    image: ghcr.io/wilgnne/ollama-vk
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "11434:11434"
+    networks:
+      - ollama-docker
+    devices:
+      - /dev/dri:/dev/dri
+    cap_add:
+      - CAP_PERFMON
+    # privileged: true # Uncomment this if you have problems with GPU detection
+    group_add:
+      - video
+      - 105 # Change this to match your "render" host group id and remove this comment
+    volumes:
+      - ollama-data:/home/root/.ollama:rw,Z,U
+
+  webui:
+    image: ghcr.io/open-webui/open-webui:main
+    volumes:
+      - webui-data:/app/backend/data
+    depends_on:
+      - ollama-vk
+    ports:
+      - 3005:8080
+    environment:
+      - OLLAMA_BASE_URLS=http://ollama-vk:11434
+      - ENV=dev
+      - WEBUI_AUTH=False
+      - WEBUI_NAME=valiantlynx AI
+      - WEBUI_URL=http://localhost:8080
+      - WEBUI_SECRET_KEY=t0p-s3cr3t
+    networks:
+      - ollama-docker
+
+volumes:
+  ollama-data:
+  webui-data:
+
+
+networks:
+  ollama-docker:
