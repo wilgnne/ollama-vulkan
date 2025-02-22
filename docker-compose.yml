@@ -1,6 +1,6 @@
 services:
   ollama-vk:
-    image: ghcr.io/wilgnne/ollama-vk
+    image: ghcr.io/wilgnne/ollama-vulkan
     build:
       context: .
       dockerfile: Dockerfile
@@ -26,7 +26,7 @@ services:
     depends_on:
       - ollama-vk
     ports:
-      - 3005:8080
+      - 8080:8080
     environment:
       - OLLAMA_BASE_URLS=http://ollama-vk:11434
       - ENV=dev
