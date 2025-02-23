@@ -17,7 +17,7 @@ services:
       - video
       - 105 # Change this to match your "render" host group id and remove this comment
     volumes:
-      - ollama-data:/home/root/.ollama
+      - ollama-data:/root/.ollama
 
   webui:
     image: ghcr.io/open-webui/open-webui:main
